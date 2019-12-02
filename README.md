@@ -15,7 +15,7 @@ In this project, I used PySpark to analyze user activity dataset and build a mac
 
 A small subset (~120MB) of the full dataset was used for data analysis and modeling as I didn't have enough resources for AWS
 
-## 3. Plan
+## 3. Execution flow
 
 1. Data loading : Loaded the datasets and identified the problems within the same
 2. Exploratory data analysis: Identify how the churn variable needs to be captured, extracted date features, Observation the variation with in churn by various users
@@ -29,14 +29,32 @@ A small subset (~120MB) of the full dataset was used for data analysis and model
 
 - Model performance on testing set:
 
-    |testing accuracy score|testing F1 score|
-    |--------|--------|
-    | 0.8387 | 0.8229 |
+	Naive model:
+	+---------+------+------+--------+
+	|precision|recall|    f1|accuracy|
+	+---------+------+------+--------+
+	|   0.5912|0.7689|0.6684|  0.7689|
+	+---------+------+------+--------+
 
-1. From the above 3 models that we built - A Naive baives base classifier is able to give us an accuracy of 76% and recall of 66% 
+
+1. From the above 3 models that we built - A Naive baives base classifier is able to give us an accuracy of 77% and F1 of 66% 
 2. While the Logistic regression definitely has an improvement, it is time consuming method when compared to the Random forest - Operationaly faster and easy to evaluate
+
+Logistic Regression:
++----------+--------+---------+-------+--------+---------+
+|train_time|f1_train|acc_train|f1_test|acc_test|pred_time|
++----------+--------+---------+-------+--------+---------+
+| 1586.0231|  0.8399|   0.8534| 0.7037|  0.7353|   0.4959|
++----------+--------+---------+-------+--------+---------+
+
+Random Forest:
++----------+--------+---------+-------+--------+---------+
+|train_time|f1_train|acc_train|f1_test|acc_test|pred_time|
++----------+--------+---------+-------+--------+---------+
+|  745.1116|  0.9513|   0.9529| 0.8083|  0.8235|   0.4198|
++----------+--------+---------+-------+--------+---------+
 
 ## 5. File structure
 
-- `Sparkify.ipynb`: exploratory data analysis, data preprocessing, and pilot development of machine learning model on local machine using data subset.
+- `Sparkify.ipynb`: exploratory data analysis, data preprocessing, and model on local machine using data subset.
 - `mini_sparkify_event_data.json`: subset of user activity data
